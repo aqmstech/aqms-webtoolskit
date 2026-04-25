@@ -1,0 +1,114 @@
+/* ============================================================
+   IMAGE RESIZER PAGE — Tool-specific layout styles
+   ============================================================ */
+
+/* ── Tool Section Header ── */
+.tool-section__header {
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+/* ── Tool Workspace Card ── */
+.tool-workspace {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.tool-workspace .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-10);
+}
+
+/* ── Step Label ── */
+.tool-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tool-step__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.tool-step__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border-radius: 50%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-primary);
+}
+
+/* ── Divider ── */
+.tool-divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ── Upload + Settings: two columns with better proportions ──
+   Upload: more compact, Settings: needs more room
+   Layout: single column on mobile/tablet, 2-col only on wide desktop
+*/
+.tool-upload-settings {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .tool-upload-settings {
+    grid-template-columns: 420px 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+/* ── Preview grid ── */
+.tool-preview-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── SEO sidebar visibility ── */
+.seo-sidebar {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .seo-sidebar {
+    display: block;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .tool-workspace .card-body {
+    padding: var(--space-5);
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 480px) {
+  .tool-workspace .card-body {
+    padding: var(--space-4);
+    gap: var(--space-5);
+  }
+  .tool-step__label {
+    font-size: var(--font-size-base);
+  }
+}

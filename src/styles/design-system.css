@@ -1,0 +1,127 @@
+/* ============================================================
+   DESIGN SYSTEM — Global CSS Custom Properties
+   Shared across all tool pages on this platform.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ── Colors ── */
+  --color-primary:        hsl(228, 70%, 55%);
+  --color-primary-light:  hsl(228, 70%, 64%);
+  --color-primary-dark:   hsl(228, 70%, 44%);
+  --color-primary-alpha:  hsla(228, 70%, 55%, 0.12);
+
+  --color-accent:         hsl(160, 64%, 42%);
+  --color-accent-light:   hsl(160, 64%, 52%);
+  --color-accent-dark:    hsl(160, 64%, 34%);
+  --color-accent-alpha:   hsla(160, 64%, 42%, 0.12);
+
+  --color-bg:             hsl(220, 22%, 97%);
+  --color-surface:        hsl(0, 0%, 100%);
+  --color-surface-alt:    hsl(220, 18%, 95%);
+  --color-surface-hover:  hsl(220, 18%, 92%);
+  --color-border:         hsl(220, 14%, 88%);
+  --color-border-strong:  hsl(220, 14%, 78%);
+
+  --color-text:           hsl(220, 20%, 16%);
+  --color-text-secondary: hsl(220, 12%, 44%);
+  --color-text-muted:     hsl(220, 10%, 60%);
+  --color-text-inverse:   hsl(0, 0%, 100%);
+
+  --color-error:          hsl(0, 70%, 54%);
+  --color-error-alpha:    hsla(0, 70%, 54%, 0.1);
+  --color-warning:        hsl(38, 90%, 50%);
+  --color-warning-alpha:  hsla(38, 90%, 50%, 0.1);
+  --color-success:        hsl(145, 62%, 40%);
+  --color-success-alpha:  hsla(145, 62%, 40%, 0.1);
+
+  /* ── Typography ── */
+  --font-family:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs:   0.6875rem;   /* 11px */
+  --font-size-sm:   0.8125rem;   /* 13px */
+  --font-size-base: 1rem;        /* 16px */
+  --font-size-lg:   1.125rem;    /* 18px */
+  --font-size-xl:   1.25rem;     /* 20px */
+  --font-size-2xl:  1.5rem;      /* 24px */
+  --font-size-3xl:  1.875rem;    /* 30px */
+  --font-size-4xl:  2.25rem;     /* 36px */
+  --font-size-5xl:  3rem;        /* 48px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:    700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight:  1.2;
+  --line-height-snug:   1.35;
+  --line-height-normal: 1.55;
+  --line-height-relaxed: 1.7;
+
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide:  0.025em;
+
+  /* ── Spacing (4px base) ── */
+  --space-1:  0.25rem;  /* 4px  */
+  --space-2:  0.5rem;   /* 8px  */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-7:  1.75rem;  /* 28px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ── Shadows ── */
+  --shadow-xs: 0 1px 2px hsla(220, 20%, 10%, 0.05);
+  --shadow-sm: 0 1px 4px hsla(220, 20%, 10%, 0.07), 0 1px 2px hsla(220, 20%, 10%, 0.04);
+  --shadow-md: 0 4px 12px hsla(220, 20%, 10%, 0.08), 0 2px 4px hsla(220, 20%, 10%, 0.04);
+  --shadow-lg: 0 8px 24px hsla(220, 20%, 10%, 0.10), 0 4px 8px hsla(220, 20%, 10%, 0.05);
+  --shadow-xl: 0 16px 40px hsla(220, 20%, 10%, 0.12), 0 8px 16px hsla(220, 20%, 10%, 0.06);
+  --shadow-primary: 0 4px 16px hsla(228, 70%, 55%, 0.30);
+  --shadow-accent: 0 4px 16px hsla(160, 64%, 42%, 0.30);
+
+  /* ── Border Radius ── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* ── Z-index scale ── */
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   10;
+  --z-sticky:   100;
+  --z-overlay:  200;
+  --z-modal:    300;
+  --z-toast:    400;
+
+  /* ── Layout ── */
+  --container-max: 1240px;
+  --container-pad: clamp(var(--space-4), 4vw, var(--space-8));
+  --header-height: 64px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

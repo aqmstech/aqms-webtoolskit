@@ -1,0 +1,93 @@
+import { useState, useCallback, useRef } from 'react';
+import { resizeImageToBlob, loadImage } from '../utils/canvas';
+import { resolveFormat, mimeToExt } from '../utils/formatBytes';
+
+/**
+ * useImageResize
+ * Manages the full resize pipeline: load → process → preview → download.
+ */
+export function useImageResize() {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [resizedBlob, setResizedBlob]   = useState(null);
+  const [resizedUrl, setResizedUrl]     = useState(null);
+  const [resizedSize, setResizedSize]   = useState(null);
+  const [resizedDims, setResizedDims]   = useState(null);
+  const [error, setError]               = useState(null);
+  const urlRef = useRef(null);
+
+  const resize = useCallback(async (file, settings) => {
+    if (!file) return;
+    setIsProcessing(true);
+    setError(null);
+    setResizedBlob(null);
+    setResizedUrl(null);
+
+    try {
+      const img    = await loadImage(file);
+      const format = resolveFormat(settings.format, file.type).replace('image/', '');
+      const blob   = await resizeImageToBlob(
+        img,
+        settings.width,
+        settings.height,
+        settings.mode,
+        settings.bgColor,
+        settings.circleCrop,
+        format,
+        settings.quality / 100
+      );
+
+      // Revoke previous URL
+      if (urlRef.current) URL.revokeObjectURL(urlRef.current);
+      const url = URL.createObjectURL(blob);
+      urlRef.current = url;
+
+      setResizedBlob(blob);
+      setResizedUrl(url);
+      setResizedSize(blob.size);
+      setResizedDims({ width: settings.width, height: settings.height });
+    } catch (err) {
+      setError(err.message || 'Resize failed. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  }, []);
+
+  const download = useCallback((file, settings) => {
+    if (!resizedBlob) return;
+    const format   = resolveFormat(settings.format, file?.type).replace('image/', '');
+    const ext      = mimeToExt(`image/${format}`);
+    const baseName = file?.name.replace(/\.[^.]+$/, '') || 'resized';
+    const fileName = `${baseName}-${settings.width}x${settings.height}.${ext}`;
+    const a        = document.createElement('a');
+    a.href         = urlRef.current;
+    a.download     = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }, [resizedBlob]);
+
+  const reset = useCallback(() => {
+    if (urlRef.current) {
+      URL.revokeObjectURL(urlRef.current);
+      urlRef.current = null;
+    }
+    setResizedBlob(null);
+    setResizedUrl(null);
+    setResizedSize(null);
+    setResizedDims(null);
+    setError(null);
+    setIsProcessing(false);
+  }, []);
+
+  return {
+    isProcessing,
+    resizedBlob,
+    resizedUrl,
+    resizedSize,
+    resizedDims,
+    error,
+    resize,
+    download,
+    reset,
+  };
+}

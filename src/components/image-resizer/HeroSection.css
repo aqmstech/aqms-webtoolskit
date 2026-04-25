@@ -1,0 +1,126 @@
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    hsl(228, 60%, 97%) 0%,
+    hsl(220, 22%, 97%) 50%,
+    hsl(160, 40%, 96%) 100%
+  );
+  padding-block: var(--space-20) var(--space-16);
+  text-align: center;
+  isolation: isolate;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* ── Eyebrow ── */
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-eyebrow__sep {
+  color: var(--color-text-muted);
+}
+
+.hero-eyebrow__note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ── H1 ── */
+.hero-h1 {
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  max-width: 800px;
+}
+
+.hero-br { display: none; }
+@media (min-width: 640px) { .hero-br { display: block; } }
+
+/* ── Subtitle ── */
+.hero-sub {
+  font-size: clamp(var(--font-size-base), 2vw, var(--font-size-lg));
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+}
+
+/* ── Actions ── */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.hero-trust {
+  display: flex;
+  gap: var(--space-5);
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-trust li {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* ── Decorative blobs ── */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hero-blob--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, hsl(228, 70%, 72%), transparent 70%);
+  top: -120px;
+  left: -80px;
+}
+
+.hero-blob--2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, hsl(160, 64%, 60%), transparent 70%);
+  bottom: -60px;
+  right: -40px;
+}
+
+/* ── Animation ── */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner {
+    animation: heroFadeIn 0.6s ease both;
+  }
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section { padding-block: var(--space-10) var(--space-8); }
+  .hero-blob--1 { width: 200px; height: 200px; top: -80px; left: -60px; }
+  .hero-blob--2 { width: 180px; height: 180px; bottom: -40px; right: -30px; }
+}

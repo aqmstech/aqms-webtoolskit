@@ -1,0 +1,279 @@
+/* ============================================================
+   RESIZE SETTINGS — Clean, no-overflow layout
+   ============================================================ */
+
+.resize-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.resize-settings--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
+
+.resize-settings__empty {
+  padding: var(--space-4);
+  background: var(--color-surface-alt);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.resize-settings__empty p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ── Group ── */
+.rs-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rs-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.rs-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ── Mode Row: 3 horizontal buttons ── */
+.rs-mode-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.rs-mode-btn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-3);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast),
+              box-shadow var(--transition-fast);
+  min-width: 0;
+}
+
+.rs-mode-btn:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-alpha);
+}
+
+.rs-mode-btn--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-alpha);
+  box-shadow: 0 0 0 2px var(--color-primary-alpha);
+}
+
+.rs-mode-btn__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.rs-mode-btn--active .rs-mode-btn__label {
+  color: var(--color-primary-dark);
+}
+
+.rs-mode-btn__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Format Pills ── */
+.rs-format-row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.rs-format-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.rs-format-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.rs-format-pill--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* ── Quality ── */
+.rs-quality-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rs-quality-val {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rs-quality-hints {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-1);
+}
+
+.rs-quality-hints span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ── Color Row ── */
+.rs-color-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.rs-color-swatch {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  cursor: pointer;
+  padding: 3px;
+  background: var(--color-surface);
+  flex-shrink: 0;
+}
+
+.rs-color-value {
+  font-size: var(--font-size-sm);
+  font-family: 'Courier New', monospace;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-alt);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Toggle ── */
+.rs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  user-select: none;
+}
+
+.rs-toggle--block {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.rs-toggle--block:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-alpha);
+}
+
+.rs-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rs-toggle__track {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  min-width: 38px;
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.rs-toggle input:checked ~ .rs-toggle__track,
+.rs-toggle input:checked + .rs-toggle__track {
+  background: var(--color-primary);
+}
+
+.rs-toggle__track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 3px hsla(0,0%,0%,0.2);
+}
+
+.rs-toggle input:checked ~ .rs-toggle__track::after,
+.rs-toggle input:checked + .rs-toggle__track::after {
+  transform: translateX(16px);
+}
+
+.rs-toggle__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rs-toggle__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .rs-mode-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .rs-mode-btn__desc {
+    display: none;
+  }
+  .rs-mode-btn {
+    align-items: center;
+    text-align: center;
+    padding: var(--space-3) var(--space-2);
+  }
+}

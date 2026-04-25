@@ -1,0 +1,12 @@
+{
+  "name": "ToolKit",
+  "short_name": "ToolKit",
+  "description": "Free online tools for images and web utilities",
+  "start_url": "/image-resizer",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#4361c2",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
