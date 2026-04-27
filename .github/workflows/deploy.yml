@@ -50,9 +50,11 @@ jobs:
           EOF
 
           # Upload using lftp over SFTP
+          # Note: SiteGround SFTP home may already BE public_html, so we use ./
           lftp -u "$FTP_USERNAME," \
             -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765'; \
                 set net:timeout 30; \
-                mirror -R --verbose --no-perms ./dist/ $FTP_SERVER_DIR; \
-                quit" \
-            sftp://$FTP_SERVER
+                set net:max-retries 3; \
+                open sftp://$FTP_SERVER; \
+                mirror -R --verbose --no-perms --delete ./dist/ $FTP_SERVER_DIR; \
+                quit"
