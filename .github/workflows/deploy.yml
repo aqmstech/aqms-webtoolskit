@@ -34,27 +34,16 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
-          # Write private key to file
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-          # Disable strict host checking for SiteGround
-          cat >> ~/.ssh/config << EOF
-          Host $FTP_SERVER
-            StrictHostKeyChecking no
-            IdentityFile ~/.ssh/deploy_key
-            Port 18765
-          EOF
-
-          # Upload using lftp over SFTP
-          # Note: SiteGround SFTP home may already BE public_html, so we use ./
           lftp -u "$FTP_USERNAME," \
             -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765'; \
                 set net:timeout 30; \
                 set net:max-retries 3; \
-                open sftp://$FTP_SERVER; \
-                mirror -R --verbose --no-perms --delete ./dist/ $FTP_SERVER_DIR; \
-                quit"
+                cd public_html; \
+                mirror -R --verbose --no-perms --delete ./dist/ ./; \
+                quit" \
+            sftp://$FTP_SERVER
