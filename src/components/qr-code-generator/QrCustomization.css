@@ -1,0 +1,178 @@
+/* ── QR Customization Panel ── */
+
+.qr-customization {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ── Toggle Button ── */
+.qr-customization__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-alt);
+  border: none;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.qr-customization__toggle:hover {
+  background: var(--color-surface-hover);
+}
+
+/* ── Body ── */
+.qr-customization__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Option ── */
+.qr-opt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.qr-opt--checkbox {
+  grid-column: 1 / -1;
+}
+
+.qr-opt__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.qr-opt__value {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-left: var(--space-1);
+}
+
+.qr-opt__select {
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-2) center;
+  padding-right: var(--space-8);
+}
+
+.qr-opt__select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-primary-alpha);
+}
+
+/* ── Range ── */
+.qr-opt__range {
+  width: 100%;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* ── Color Input ── */
+.qr-opt__color-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.qr-opt__color {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.qr-opt__color::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.qr-opt__color::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.qr-opt__color-hex {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-family: monospace;
+}
+
+/* ── Checkbox ── */
+.qr-opt__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.qr-opt__checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* ── Format Pills ── */
+.qr-opt__pills {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.qr-opt__pill {
+  padding: var(--space-1) var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.qr-opt__pill:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.qr-opt__pill--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .qr-customization__body {
+    grid-template-columns: 1fr;
+  }
+}

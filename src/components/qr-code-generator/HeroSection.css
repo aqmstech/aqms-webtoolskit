@@ -1,0 +1,3 @@
+/* QR Hero reuses the same class names as the Image Resizer hero.
+   The shared CSS in image-resizer/HeroSection.css handles all styling.
+   This file exists for any QR-specific hero overrides in the future. */

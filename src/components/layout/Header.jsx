@@ -6,6 +6,7 @@ import './Header.css';
 
 const NAV_LINKS = [
   { to: '/image-resizer', label: 'Image Resizer' },
+  { to: '/qr-code-generator', label: 'QR Generator' },
   // Future tools added here:
   // { to: '/image-compressor', label: 'Image Compressor' },
   // { to: '/format-converter', label: 'Format Converter' },

@@ -1,0 +1,25 @@
+/* ============================================================
+   QR CODE GENERATOR PAGE — Tool-specific layout styles
+   ============================================================ */
+
+/* ── Preview + Actions side by side on desktop ── */
+.qr-preview-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .qr-preview-actions {
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* ── Responsive: tighter padding on mobile ── */
+@media (max-width: 480px) {
+  .qr-preview-actions {
+    gap: var(--space-4);
+  }
+}
