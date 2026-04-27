@@ -27,13 +27,14 @@ jobs:
         run: npm run build
 
       - name: Deploy to SiteGround via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 18765
-          local_path: './dist/*'
-          remote_path: ${{ secrets.FTP_SERVER_DIR }}
-          sftp_only: true
-          delete_remote_files: false
+          source: "dist/."
+          target: ${{ secrets.FTP_SERVER_DIR }}
+          strip_components: 1
+          rm: false
+          overwrite: true
