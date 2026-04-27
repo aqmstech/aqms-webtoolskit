@@ -44,7 +44,9 @@ jobs:
             -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765'; \
                 ls -la; \
                 echo '--- checking public_html ---'; \
-                ls -la public_html 2>/dev/null || echo 'NO public_html found'; \
+                ls -la public_html; \
+                echo '--- checking www ---'; \
+                ls -la www; \
                 quit" \
             sftp://$FTP_SERVER
 
