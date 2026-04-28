@@ -43,8 +43,8 @@ jobs:
             -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765'; \
                 set net:timeout 30; \
                 set net:max-retries 3; \
-                cd www/aqmst.sg-host.com/public_html; \
+                cd www/aqmswebtoolkit.com/public_html; \
                 rm -f index.html; \
                 mirror -R --verbose --no-perms --delete ./dist/ ./; \
                 quit" \
-            sftp://$FTP_SERVER
+            sftp://aqmswebtoolkit.com
