@@ -39,11 +39,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-          SFTP_CMD="ssh -a -x -i $HOME/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765"
-
-          # Mirror all files (ignore timestamps to always overwrite)
           lftp -u "$FTP_USERNAME," \
-            -e "set sftp:connect-program '$SFTP_CMD'; \
+            -e "set sftp:connect-program 'ssh -a -x -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765'; \
                 set net:timeout 30; \
                 set net:max-retries 3; \
                 cd www/aqmst.sg-host.com/public_html; \
