@@ -44,6 +44,7 @@ jobs:
                 set net:timeout 30; \
                 set net:max-retries 3; \
                 cd www/aqmst.sg-host.com/public_html; \
-                mirror -R --verbose --no-perms --delete --ignore-time ./dist/ ./; \
+                rm -f index.html; \
+                mirror -R --verbose --no-perms --delete ./dist/ ./; \
                 quit" \
             sftp://$FTP_SERVER
