@@ -3,22 +3,40 @@
  * Generates JSON-LD structured data objects.
  */
 
+const SITE_URL = 'https://aqmswebtoolkit.com';
+const SITE_NAME = 'AQMS Web Toolkit';
+
+/* ── WebSite Schema (homepage) ── */
 export function getWebSiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'AQMS Web Toolkit',
-    url: 'https://aqmswebtoolkit.com/',
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
     description:
       'Free online tools including an Image Resizer and QR Code Generator. Fast, simple, and mobile-friendly utilities for everyday web tasks.',
   };
 }
 
+/* ── Organization Schema (homepage) ── */
+export function getOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    logo: `${SITE_URL}/favicon.svg`,
+    sameAs: [],
+  };
+}
+
+/* ── WebApplication Schema (Image Resizer) ── */
 export function getWebApplicationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Image Resizer Online',
+    url: `${SITE_URL}/image-resizer`,
     description:
       'Resize images online for Facebook, LinkedIn, Instagram, YouTube, banners, profile pictures, and custom dimensions. Fast, free, and private — your images never leave your browser.',
     applicationCategory: 'DesignApplication',
@@ -37,6 +55,7 @@ export function getWebApplicationSchema() {
   };
 }
 
+/* ── FAQPage Schema ── */
 export function getFaqSchema(faqs) {
   return {
     '@context': 'https://schema.org',
@@ -45,6 +64,20 @@ export function getFaqSchema(faqs) {
       '@type': 'Question',
       name: question,
       acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  };
+}
+
+/* ── BreadcrumbList Schema ── */
+export function getBreadcrumbSchema(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
     })),
   };
 }

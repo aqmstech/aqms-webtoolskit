@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { getFaqSchema } from '../utils/seo';
+import { getFaqSchema, getBreadcrumbSchema } from '../utils/seo';
 
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -97,6 +97,7 @@ export default function QrCodeGeneratorPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'QR Code Generator Online',
+    url: 'https://aqmswebtoolkit.com/qr-code-generator',
     description:
       'Create QR codes online for websites, text, phone numbers, email, SMS, WhatsApp, WiFi, and contacts. Generate, preview, and download QR codes instantly.',
     applicationCategory: 'UtilityApplication',
@@ -113,6 +114,11 @@ export default function QrCodeGeneratorPage() {
     ],
   };
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://aqmswebtoolkit.com/' },
+    { name: 'QR Code Generator', url: 'https://aqmswebtoolkit.com/qr-code-generator' },
+  ]);
+
   return (
     <>
       <Helmet>
@@ -123,6 +129,8 @@ export default function QrCodeGeneratorPage() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://aqmswebtoolkit.com/qr-code-generator" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="Free QR Code Generator Online — Links, Text, WiFi, and More | ToolKit" />
         <meta
           property="og:description"
@@ -130,8 +138,18 @@ export default function QrCodeGeneratorPage() {
         />
         <meta property="og:url" content="https://aqmswebtoolkit.com/qr-code-generator" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="AQMS Web Toolkit" />
+        <meta property="og:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* Twitter / X */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Free QR Code Generator Online — Links, Text, WiFi, and More | ToolKit" />
+        <meta name="twitter:description" content="Create QR codes for websites, phone numbers, email, WiFi, and more. Free, fast, and private." />
+        <meta name="twitter:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* JSON-LD */}
         <script type="application/ld+json">{JSON.stringify(appSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <div className="page-layout">

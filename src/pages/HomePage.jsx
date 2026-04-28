@@ -6,7 +6,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import Accordion from '../components/common/Accordion';
 
-import { getWebSiteSchema, getFaqSchema } from '../utils/seo';
+import { getWebSiteSchema, getOrganizationSchema, getFaqSchema, getBreadcrumbSchema } from '../utils/seo';
 import HOMEPAGE_FAQS from '../data/homepageFaqs';
 
 import '../styles/pages/homepage.css';
@@ -17,7 +17,11 @@ import '../styles/pages/homepage.css';
  */
 export default function HomePage() {
   const siteSchema = getWebSiteSchema();
+  const orgSchema = getOrganizationSchema();
   const faqSchema = getFaqSchema(HOMEPAGE_FAQS);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://aqmswebtoolkit.com/' },
+  ]);
 
   return (
     <>
@@ -29,6 +33,8 @@ export default function HomePage() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://aqmswebtoolkit.com/" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="AQMS Web Toolkit – Free Online Image Resizer and QR Code Generator" />
         <meta
           property="og:description"
@@ -36,9 +42,20 @@ export default function HomePage() {
         />
         <meta property="og:url" content="https://aqmswebtoolkit.com/" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="AQMS Web Toolkit" />
+        <meta property="og:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* Twitter / X */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="AQMS Web Toolkit – Free Online Image Resizer and QR Code Generator" />
+        <meta name="twitter:description" content="Free online tools to resize images and generate QR codes. Fast, private, and mobile-friendly." />
+        <meta name="twitter:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* JSON-LD */}
         <script type="application/ld+json">{JSON.stringify(siteSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(orgSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <div className="page-layout">

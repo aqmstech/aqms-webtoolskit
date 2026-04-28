@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { getWebApplicationSchema } from '../utils/seo';
+import { getWebApplicationSchema, getBreadcrumbSchema } from '../utils/seo';
 
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -103,6 +103,10 @@ export default function ImageResizerPage() {
 
   const canResize = !!upload.file && !!dimensions.width && !!dimensions.height;
   const schema = getWebApplicationSchema();
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: 'https://aqmswebtoolkit.com/' },
+    { name: 'Image Resizer', url: 'https://aqmswebtoolkit.com/image-resizer' },
+  ]);
 
   return (
     <>
@@ -114,6 +118,8 @@ export default function ImageResizerPage() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://aqmswebtoolkit.com/image-resizer" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="Image Resizer Online — Social Media, Banners, Custom Sizes | ToolKit" />
         <meta
           property="og:description"
@@ -121,8 +127,18 @@ export default function ImageResizerPage() {
         />
         <meta property="og:url" content="https://aqmswebtoolkit.com/image-resizer" />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="AQMS Web Toolkit" />
+        <meta property="og:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* Twitter / X */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Image Resizer Online — Social Media, Banners, Custom Sizes | ToolKit" />
+        <meta name="twitter:description" content="Resize images for Facebook, Instagram, LinkedIn, YouTube, and more. Free, fast, and private." />
+        <meta name="twitter:image" content="https://aqmswebtoolkit.com/favicon.svg" />
+
+        {/* JSON-LD */}
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
       </Helmet>
 
       <div className="page-layout">

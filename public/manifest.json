@@ -2,7 +2,7 @@
   "name": "ToolKit",
   "short_name": "ToolKit",
   "description": "Free online tools for images and web utilities",
-  "start_url": "/image-resizer",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f6fa",
   "theme_color": "#4361c2",
