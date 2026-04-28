@@ -39,23 +39,14 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-          # Write lftp script to a file to avoid shell escaping issues
-          cat > /tmp/deploy.lftp << 'LFTP_SCRIPT'
-          set sftp:connect-program "ssh -a -x -i /root/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765"
-          set net:timeout 60
-          set net:max-retries 5
-          set net:reconnect-interval-base 5
-          open sftp://$FTP_SERVER
-          user $FTP_USERNAME ""
-          cd www/aqmst.sg-host.com/public_html
-          mirror -R --verbose --no-perms --delete --ignore-time ./dist/ ./
-          put -O ./ ./dist/index.html
-          quit
-          LFTP_SCRIPT
+          SFTP_CMD="ssh -a -x -i $HOME/.ssh/deploy_key -o StrictHostKeyChecking=no -p 18765"
 
-          # Substitute env vars into the script
-          sed -i "s|\$FTP_SERVER|$FTP_SERVER|g" /tmp/deploy.lftp
-          sed -i "s|\$FTP_USERNAME|$FTP_USERNAME|g" /tmp/deploy.lftp
-          sed -i "s|/root/.ssh/|$HOME/.ssh/|g" /tmp/deploy.lftp
-
-          lftp -f /tmp/deploy.lftp
+          # Mirror all files (ignore timestamps to always overwrite)
+          lftp -u "$FTP_USERNAME," \
+            -e "set sftp:connect-program '$SFTP_CMD'; \
+                set net:timeout 30; \
+                set net:max-retries 3; \
+                cd www/aqmst.sg-host.com/public_html; \
+                mirror -R --verbose --no-perms --delete --ignore-time ./dist/ ./; \
+                quit" \
+            sftp://$FTP_SERVER
