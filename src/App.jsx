@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import HomePage from './pages/HomePage';
 import ImageResizerPage from './pages/ImageResizerPage';
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage';
 
@@ -12,8 +13,8 @@ export default function App() {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          {/* Primary tool — redirect root to image resizer for now */}
-          <Route path="/" element={<Navigate to="/image-resizer" replace />} />
+          {/* Homepage */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/image-resizer" element={<ImageResizerPage />} />
           <Route path="/qr-code-generator" element={<QrCodeGeneratorPage />} />
 
@@ -24,7 +25,7 @@ export default function App() {
           */}
 
           {/* 404 fallback */}
-          <Route path="*" element={<Navigate to="/image-resizer" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

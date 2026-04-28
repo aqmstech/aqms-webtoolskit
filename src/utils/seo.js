@@ -3,6 +3,17 @@
  * Generates JSON-LD structured data objects.
  */
 
+export function getWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'AQMS Web Toolkit',
+    url: 'https://aqmswebtoolkit.com/',
+    description:
+      'Free online tools including an Image Resizer and QR Code Generator. Fast, simple, and mobile-friendly utilities for everyday web tasks.',
+  };
+}
+
 export function getWebApplicationSchema() {
   return {
     '@context': 'https://schema.org',

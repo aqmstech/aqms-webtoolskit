@@ -113,13 +113,13 @@ export default function ImageResizerPage() {
           content="Resize images online for Facebook, LinkedIn, Instagram, YouTube, banners, profile pictures, and custom dimensions. Fast, simple, and easy to use."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://aqmst.sg-host.com/image-resizer" />
+        <link rel="canonical" href="https://aqmswebtoolkit.com/image-resizer" />
         <meta property="og:title" content="Image Resizer Online — Social Media, Banners, Custom Sizes | ToolKit" />
         <meta
           property="og:description"
           content="Resize images for Facebook, Instagram, LinkedIn, YouTube, and more. Free, fast, and private — images never leave your browser."
         />
-        <meta property="og:url" content="https://aqmst.sg-host.com/image-resizer" />
+        <meta property="og:url" content="https://aqmswebtoolkit.com/image-resizer" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>

@@ -122,13 +122,13 @@ export default function QrCodeGeneratorPage() {
           content="Create QR codes online for websites, text, phone numbers, email, and WiFi. Generate, preview, and download QR codes instantly with an easy-to-use free tool."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://aqmst.sg-host.com/qr-code-generator" />
+        <link rel="canonical" href="https://aqmswebtoolkit.com/qr-code-generator" />
         <meta property="og:title" content="Free QR Code Generator Online — Links, Text, WiFi, and More | ToolKit" />
         <meta
           property="og:description"
           content="Create QR codes for websites, phone numbers, email, WiFi, contacts, and more. Free, fast, and private — data never leaves your browser."
         />
-        <meta property="og:url" content="https://aqmst.sg-host.com/qr-code-generator" />
+        <meta property="og:url" content="https://aqmswebtoolkit.com/qr-code-generator" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(appSchema)}</script>
