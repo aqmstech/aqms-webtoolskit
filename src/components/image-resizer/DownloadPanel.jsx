@@ -1,4 +1,4 @@
-import { Download, RotateCcw, RefreshCw, AlertCircle } from 'lucide-react';
+import { Download, RotateCcw, RefreshCw, AlertCircle, Move } from 'lucide-react';
 import './DownloadPanel.css';
 
 export default function DownloadPanel({
@@ -10,6 +10,9 @@ export default function DownloadPanel({
   onReset,
   canResize,
   onResize,
+  isFillMode,
+  onAdjustCrop,
+  isCropMode,
 }) {
   return (
     <div className="download-panel">
@@ -57,6 +60,12 @@ export default function DownloadPanel({
 
         {/* Secondary Actions */}
         <div className="download-panel__secondary">
+          {resizedUrl && isFillMode && !isCropMode && (
+            <button className="btn btn--outline" onClick={onAdjustCrop} id="btn-adjust-crop">
+              <Move size={16} />
+              Adjust Crop
+            </button>
+          )}
           {resizedUrl && (
             <button className="btn btn--outline" onClick={onResizeAgain} id="btn-resize-again">
               <RefreshCw size={16} />

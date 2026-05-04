@@ -1,0 +1,150 @@
+/* ── CropAdjuster ── */
+
+.crop-adjuster {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary-alpha);
+  border-radius: var(--radius-lg);
+  animation: cropFadeIn 0.25s ease-out;
+}
+
+@keyframes cropFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.crop-adjuster__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.crop-adjuster__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.crop-adjuster__hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ── Canvas area ── */
+.crop-adjuster__canvas {
+  position: relative;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+  user-select: none;
+  touch-action: none;
+}
+
+.crop-adjuster--grab-all { cursor: grab; }
+.crop-adjuster--grab-x   { cursor: ew-resize; }
+.crop-adjuster--grab-y   { cursor: ns-resize; }
+
+.crop-adjuster__canvas:active {
+  cursor: grabbing;
+}
+
+/* Source image — full, underneath everything */
+.crop-adjuster__source {
+  display: block;
+  pointer-events: none;
+}
+
+/* Dim overlays — darken the non-crop region */
+.crop-adjuster__dim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.crop-adjuster__dim--bottom,
+.crop-adjuster__dim--right {
+  left: auto;
+  top: auto;
+}
+
+.crop-adjuster__dim--bottom { left: 0; }
+.crop-adjuster__dim--left   { left: 0; }
+
+/* Crop rectangle border */
+.crop-adjuster__crop-rect {
+  position: absolute;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Corner handles */
+.crop-adjuster__corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: white;
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.crop-adjuster__corner--tl {
+  top: -1px; left: -1px;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+
+.crop-adjuster__corner--tr {
+  top: -1px; right: -1px;
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.crop-adjuster__corner--bl {
+  bottom: -1px; left: -1px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.crop-adjuster__corner--br {
+  bottom: -1px; right: -1px;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+}
+
+/* ── Actions ── */
+.crop-adjuster__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .crop-adjuster {
+    padding: var(--space-4);
+  }
+
+  .crop-adjuster__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .crop-adjuster__actions .btn {
+    justify-content: center;
+  }
+}

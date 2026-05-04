@@ -11,6 +11,7 @@ import PresetSelector from '../components/image-resizer/PresetSelector';
 import ResizeSettings from '../components/image-resizer/ResizeSettings';
 import ImagePreview from '../components/image-resizer/ImagePreview';
 import DownloadPanel from '../components/image-resizer/DownloadPanel';
+import CropAdjuster from '../components/image-resizer/CropAdjuster';
 import SeoContent from '../components/image-resizer/SeoContent';
 import FaqSection from '../components/image-resizer/FaqSection';
 import FileUploader from '../components/common/FileUploader';
@@ -89,6 +90,7 @@ export default function ImageResizerPage() {
 
   /* ── Resize Again (keep image, keep settings) ── */
   const handleResizeAgain = useCallback(() => {
+    setCropAdjustMode(false);
     resizer.reset();
   }, [resizer]);
 
@@ -96,12 +98,37 @@ export default function ImageResizerPage() {
   const handleReset = useCallback(() => {
     upload.clear();
     resizer.reset();
+    setCropAdjustMode(false);
     setSelectedPreset(null);
     setDimensions(DEFAULT_DIMS);
     setSettings(DEFAULT_SETTINGS);
   }, [upload, resizer]);
 
+  /* ── Crop Adjustment (Fill mode) ── */
+  const [cropAdjustMode, setCropAdjustMode] = useState(false);
+
+  const handleAdjustCrop = useCallback(() => {
+    setCropAdjustMode(true);
+  }, []);
+
+  const handleCropApply = useCallback((offsetX, offsetY) => {
+    setCropAdjustMode(false);
+    resizer.reRenderFill(upload.file, {
+      width:      Number(dimensions.width),
+      height:     Number(dimensions.height),
+      format:     settings.format,
+      quality:    settings.quality,
+      bgColor:    settings.bgColor,
+      circleCrop: settings.circleCrop,
+    }, offsetX, offsetY);
+  }, [resizer, upload.file, dimensions, settings]);
+
+  const handleCropCancel = useCallback(() => {
+    setCropAdjustMode(false);
+  }, []);
+
   const canResize = !!upload.file && !!dimensions.width && !!dimensions.height;
+  const isFillMode = settings.mode === 'fill';
   const schema = getWebApplicationSchema();
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: 'Home', url: 'https://aqmswebtoolkit.com/' },
@@ -233,6 +260,17 @@ export default function ImageResizerPage() {
                     isProcessing={resizer.isProcessing}
                   />
 
+                  {/* Crop Adjuster (Fill mode only) */}
+                  {cropAdjustMode && resizer.sourceImage?.current && (
+                    <CropAdjuster
+                      sourceImage={resizer.sourceImage.current}
+                      targetWidth={Number(dimensions.width)}
+                      targetHeight={Number(dimensions.height)}
+                      onApply={handleCropApply}
+                      onCancel={handleCropCancel}
+                    />
+                  )}
+
                   {/* Actions */}
                   <DownloadPanel
                     resizedUrl={resizer.resizedUrl}
@@ -243,6 +281,9 @@ export default function ImageResizerPage() {
                     onDownload={handleDownload}
                     onResizeAgain={handleResizeAgain}
                     onReset={handleReset}
+                    isFillMode={isFillMode}
+                    onAdjustCrop={handleAdjustCrop}
+                    isCropMode={cropAdjustMode}
                   />
 
                 </div>

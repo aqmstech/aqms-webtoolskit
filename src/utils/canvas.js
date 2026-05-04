@@ -7,7 +7,7 @@
 /**
  * Calculates draw parameters for Fit, Fill, or Stretch modes.
  */
-function calcDrawParams(imgW, imgH, targetW, targetH, mode) {
+export function calcDrawParams(imgW, imgH, targetW, targetH, mode) {
   if (mode === 'stretch') {
     return { sx: 0, sy: 0, sw: imgW, sh: imgH, dx: 0, dy: 0, dw: targetW, dh: targetH };
   }
@@ -90,6 +90,73 @@ export function resizeImageToBlob(img, targetW, targetH, mode, bgColor, circleCr
       );
 
       ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+
+      const mimeType = `image/${format}`;
+      const qualityArg = (format === 'jpeg' || format === 'webp') ? quality : undefined;
+      canvas.toBlob((blob) => {
+        if (blob) resolve(blob);
+        else reject(new Error('Canvas toBlob returned null'));
+      }, mimeType, qualityArg);
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+/**
+ * Fill-mode resize with a custom source offset.
+ * Instead of auto-centering the crop, uses the provided (offsetX, offsetY)
+ * to let users choose which part of the image is visible.
+ *
+ * @param {HTMLImageElement} img
+ * @param {number} targetW
+ * @param {number} targetH
+ * @param {number} offsetX  — Source X offset in original image pixels
+ * @param {number} offsetY  — Source Y offset in original image pixels
+ * @param {boolean} circleCrop
+ * @param {string} format
+ * @param {number} quality
+ * @param {string} bgColor
+ * @returns {Promise<Blob>}
+ */
+export function resizeImageToBlobWithOffset(img, targetW, targetH, offsetX, offsetY, circleCrop, format, quality, bgColor) {
+  return new Promise((resolve, reject) => {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+
+      // Background fill for non-transparent formats
+      if (format !== 'png' && format !== 'webp') {
+        ctx.fillStyle = bgColor || '#ffffff';
+        ctx.fillRect(0, 0, targetW, targetH);
+      }
+
+      if (circleCrop) {
+        applyCircleClip(ctx, targetW, targetH);
+      }
+
+      // Compute the source crop region size (same as fill mode)
+      const imgW = img.naturalWidth;
+      const imgH = img.naturalHeight;
+      const imgRatio = imgW / imgH;
+      const targetRatio = targetW / targetH;
+
+      let sw, sh;
+      if (imgRatio > targetRatio) {
+        sw = Math.round(imgH * targetRatio);
+        sh = imgH;
+      } else {
+        sw = imgW;
+        sh = Math.round(imgW / targetRatio);
+      }
+
+      // Clamp offsets to valid bounds
+      const sx = Math.max(0, Math.min(offsetX, imgW - sw));
+      const sy = Math.max(0, Math.min(offsetY, imgH - sh));
+
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetW, targetH);
 
       const mimeType = `image/${format}`;
       const qualityArg = (format === 'jpeg' || format === 'webp') ? quality : undefined;
