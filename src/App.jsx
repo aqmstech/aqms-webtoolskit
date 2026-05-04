@@ -3,6 +3,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import HomePage from './pages/HomePage';
 import ImageResizerPage from './pages/ImageResizerPage';
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfUsePage from './pages/TermsOfUsePage';
+import ContactPage from './pages/ContactPage';
 
 /**
  * App — Root component.
@@ -17,6 +20,11 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/image-resizer" element={<ImageResizerPage />} />
           <Route path="/qr-code-generator" element={<QrCodeGeneratorPage />} />
+
+          {/* Static pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms-of-use" element={<TermsOfUsePage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
           {/* Future tool routes:
           <Route path="/image-compressor" element={<ImageCompressorPage />} />

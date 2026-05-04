@@ -10,9 +10,9 @@ const TOOL_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { href: '#', label: 'Privacy Policy' },
-  { href: '#', label: 'Terms of Use' },
-  { href: '#', label: 'Contact' },
+  { to: '/privacy-policy', label: 'Privacy Policy' },
+  { to: '/terms-of-use', label: 'Terms of Use' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 export default function Footer() {
@@ -44,8 +44,8 @@ export default function Footer() {
         <nav className="footer-nav" aria-label="Legal links">
           <h3 className="footer-nav__heading">Legal</h3>
           <ul role="list">
-            {LEGAL_LINKS.map(({ href, label }) => (
-              <li key={label}><a href={href}>{label}</a></li>
+            {LEGAL_LINKS.map(({ to, label }) => (
+              <li key={to}><Link to={to}>{label}</Link></li>
             ))}
           </ul>
         </nav>
