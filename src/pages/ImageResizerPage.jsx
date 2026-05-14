@@ -12,12 +12,15 @@ import ResizeSettings from '../components/image-resizer/ResizeSettings';
 import ImagePreview from '../components/image-resizer/ImagePreview';
 import DownloadPanel from '../components/image-resizer/DownloadPanel';
 import CropAdjuster from '../components/image-resizer/CropAdjuster';
+import BatchUploader from '../components/image-resizer/BatchUploader';
+import BatchResults from '../components/image-resizer/BatchResults';
 import SeoContent from '../components/image-resizer/SeoContent';
 import FaqSection from '../components/image-resizer/FaqSection';
 import FileUploader from '../components/common/FileUploader';
 
 import { useFileUpload } from '../hooks/useFileUpload';
 import { useImageResize } from '../hooks/useImageResize';
+import { useBatchResize } from '../hooks/useBatchResize';
 
 import '../styles/pages/image-resizer.css';
 
@@ -35,9 +38,11 @@ export default function ImageResizerPage() {
   const [selectedPreset,  setSelectedPreset]  = useState(null);
   const [dimensions,      setDimensions]      = useState(DEFAULT_DIMS);
   const [settings,        setSettings]        = useState(DEFAULT_SETTINGS);
+  const [batchMode,       setBatchMode]       = useState(false);
 
   const upload  = useFileUpload();
   const resizer = useImageResize();
+  const batch   = useBatchResize();
 
   /* ── Preset selected ── */
   const handlePresetSelect = useCallback((preset) => {
@@ -98,11 +103,57 @@ export default function ImageResizerPage() {
   const handleReset = useCallback(() => {
     upload.clear();
     resizer.reset();
+    batch.clearAll();
     setCropAdjustMode(false);
     setSelectedPreset(null);
     setDimensions(DEFAULT_DIMS);
     setSettings(DEFAULT_SETTINGS);
-  }, [upload, resizer]);
+  }, [upload, resizer, batch]);
+
+  /* ── Batch mode toggle ── */
+  const handleModeToggle = useCallback((isBatch) => {
+    setBatchMode(isBatch);
+    // Reset the other mode's state when switching
+    if (isBatch) {
+      upload.clear();
+      resizer.reset();
+      setCropAdjustMode(false);
+    } else {
+      batch.clearAll();
+    }
+  }, [upload, resizer, batch]);
+
+  /* ── Batch resize ── */
+  const handleBatchResize = useCallback(() => {
+    if (!dimensions.width || !dimensions.height || batch.files.length === 0) return;
+    batch.resizeAll({
+      width:      Number(dimensions.width),
+      height:     Number(dimensions.height),
+      mode:       settings.mode,
+      bgColor:    settings.bgColor,
+      circleCrop: settings.circleCrop,
+      format:     settings.format,
+      quality:    settings.quality,
+    });
+  }, [batch, dimensions, settings]);
+
+  /* ── Batch download one ── */
+  const handleBatchDownloadOne = useCallback((id) => {
+    batch.downloadOne(id, {
+      format: settings.format,
+      width:  Number(dimensions.width),
+      height: Number(dimensions.height),
+    });
+  }, [batch, settings.format, dimensions]);
+
+  /* ── Batch download all ── */
+  const handleBatchDownloadAll = useCallback(() => {
+    batch.downloadAll({
+      format: settings.format,
+      width:  Number(dimensions.width),
+      height: Number(dimensions.height),
+    });
+  }, [batch, settings.format, dimensions]);
 
   /* ── Crop Adjustment (Fill mode) ── */
   const [cropAdjustMode, setCropAdjustMode] = useState(false);
@@ -128,6 +179,7 @@ export default function ImageResizerPage() {
   }, []);
 
   const canResize = !!upload.file && !!dimensions.width && !!dimensions.height;
+  const canBatchResize = batch.files.length > 0 && !!dimensions.width && !!dimensions.height;
   const isFillMode = settings.mode === 'fill';
   const schema = getWebApplicationSchema();
   const breadcrumbSchema = getBreadcrumbSchema([
@@ -220,19 +272,56 @@ export default function ImageResizerPage() {
                     <div className="tool-step">
                       <div className="tool-step__label">
                         <span className="tool-step__num" aria-hidden="true">2</span>
-                        <span>Upload Your Image</span>
+                        <span>Upload Your Image{batchMode ? 's' : ''}</span>
                       </div>
-                      <FileUploader
-                        file={upload.file}
-                        preview={upload.preview}
-                        error={upload.error}
-                        isDragging={upload.isDragging}
-                        onSelect={upload.handleSelect}
-                        onDrop={upload.handleDrop}
-                        onDragOver={upload.handleDragOver}
-                        onDragLeave={upload.handleDragLeave}
-                        onClear={handleClear}
-                      />
+
+                      {/* Mode toggle */}
+                      <div className="upload-mode-toggle" role="radiogroup" aria-label="Upload mode">
+                        <label className={`upload-mode-pill ${!batchMode ? 'upload-mode-pill--active' : ''}`}>
+                          <input
+                            type="radio"
+                            name="upload-mode"
+                            className="sr-only"
+                            checked={!batchMode}
+                            onChange={() => handleModeToggle(false)}
+                          />
+                          Single Image
+                        </label>
+                        <label className={`upload-mode-pill ${batchMode ? 'upload-mode-pill--active' : ''}`}>
+                          <input
+                            type="radio"
+                            name="upload-mode"
+                            className="sr-only"
+                            checked={batchMode}
+                            onChange={() => handleModeToggle(true)}
+                          />
+                          Multiple Images
+                        </label>
+                      </div>
+
+                      {batchMode ? (
+                        <BatchUploader
+                          files={batch.files}
+                          maxFiles={batch.MAX_FILES}
+                          error={batch.error}
+                          onAddFiles={batch.addFiles}
+                          onRemoveFile={batch.removeFile}
+                          onClearAll={batch.clearAll}
+                          disabled={batch.isProcessing}
+                        />
+                      ) : (
+                        <FileUploader
+                          file={upload.file}
+                          preview={upload.preview}
+                          error={upload.error}
+                          isDragging={upload.isDragging}
+                          onSelect={upload.handleSelect}
+                          onDrop={upload.handleDrop}
+                          onDragOver={upload.handleDragOver}
+                          onDragLeave={upload.handleDragLeave}
+                          onClear={handleClear}
+                        />
+                      )}
                     </div>
 
                     <div className="tool-step">
@@ -243,48 +332,66 @@ export default function ImageResizerPage() {
                       <ResizeSettings
                         settings={settings}
                         onChange={handleSettingsChange}
-                        disabled={!upload.file}
+                        disabled={batchMode ? batch.files.length === 0 : !upload.file}
                       />
                     </div>
                   </div>
 
                   <div className="tool-divider" aria-hidden="true" />
 
-                  {/* Step 4: Preview */}
-                  <ImagePreview
-                    originalFile={upload.file}
-                    originalPreview={upload.preview}
-                    resizedUrl={resizer.resizedUrl}
-                    resizedSize={resizer.resizedSize}
-                    resizedDims={resizer.resizedDims}
-                    isProcessing={resizer.isProcessing}
-                  />
-
-                  {/* Crop Adjuster (Fill mode only) */}
-                  {cropAdjustMode && resizer.sourceImage?.current && (
-                    <CropAdjuster
-                      sourceImage={resizer.sourceImage.current}
-                      targetWidth={Number(dimensions.width)}
-                      targetHeight={Number(dimensions.height)}
-                      onApply={handleCropApply}
-                      onCancel={handleCropCancel}
+                  {/* Step 4: Results */}
+                  {batchMode ? (
+                    <BatchResults
+                      files={batch.files}
+                      isProcessing={batch.isProcessing}
+                      progress={batch.progress}
+                      doneCount={batch.doneCount}
+                      allDone={batch.allDone}
+                      onDownloadOne={handleBatchDownloadOne}
+                      onDownloadAll={handleBatchDownloadAll}
+                      onResizeAll={handleBatchResize}
+                      onResetResults={batch.resetResults}
+                      onClearAll={() => { batch.clearAll(); }}
+                      canResize={canBatchResize}
                     />
-                  )}
+                  ) : (
+                    <>
+                      <ImagePreview
+                        originalFile={upload.file}
+                        originalPreview={upload.preview}
+                        resizedUrl={resizer.resizedUrl}
+                        resizedSize={resizer.resizedSize}
+                        resizedDims={resizer.resizedDims}
+                        isProcessing={resizer.isProcessing}
+                      />
 
-                  {/* Actions */}
-                  <DownloadPanel
-                    resizedUrl={resizer.resizedUrl}
-                    isProcessing={resizer.isProcessing}
-                    error={resizer.error}
-                    canResize={canResize}
-                    onResize={handleResize}
-                    onDownload={handleDownload}
-                    onResizeAgain={handleResizeAgain}
-                    onReset={handleReset}
-                    isFillMode={isFillMode}
-                    onAdjustCrop={handleAdjustCrop}
-                    isCropMode={cropAdjustMode}
-                  />
+                      {/* Crop Adjuster (Fill mode only) */}
+                      {cropAdjustMode && resizer.sourceImage?.current && (
+                        <CropAdjuster
+                          sourceImage={resizer.sourceImage.current}
+                          targetWidth={Number(dimensions.width)}
+                          targetHeight={Number(dimensions.height)}
+                          onApply={handleCropApply}
+                          onCancel={handleCropCancel}
+                        />
+                      )}
+
+                      {/* Actions */}
+                      <DownloadPanel
+                        resizedUrl={resizer.resizedUrl}
+                        isProcessing={resizer.isProcessing}
+                        error={resizer.error}
+                        canResize={canResize}
+                        onResize={handleResize}
+                        onDownload={handleDownload}
+                        onResizeAgain={handleResizeAgain}
+                        onReset={handleReset}
+                        isFillMode={isFillMode}
+                        onAdjustCrop={handleAdjustCrop}
+                        isCropMode={cropAdjustMode}
+                      />
+                    </>
+                  )}
 
                 </div>
               </div>

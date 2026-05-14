@@ -1,0 +1,190 @@
+/* ── BatchUploader ── */
+
+.batch-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Drop zone ── */
+.batch-uploader__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: center;
+  min-height: 140px;
+  transition: border-color var(--transition-fast),
+              background var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.batch-uploader__dropzone:hover,
+.batch-uploader__dropzone:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-primary-alpha);
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+  outline: none;
+}
+
+.batch-uploader__dropzone--dragging {
+  border-color: var(--color-primary);
+  background: var(--color-primary-alpha);
+  box-shadow: var(--shadow-primary);
+  transform: scale(1.01);
+}
+
+.batch-uploader__dropzone--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.batch-uploader__icon {
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+.batch-uploader__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.batch-uploader__primary {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.batch-uploader__secondary {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.batch-uploader__formats {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.batch-uploader__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-error-alpha);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+/* ── File list ── */
+.batch-uploader__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.batch-uploader__list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-1);
+}
+
+.batch-uploader__count {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.batch-uploader__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: var(--space-1);
+}
+
+/* ── File item ── */
+.batch-file-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.batch-file-item:hover {
+  background: var(--color-surface-alt);
+}
+
+.batch-file-item__thumb-wrap {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-surface-alt);
+}
+
+.batch-file-item__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.batch-file-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.batch-file-item__name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.batch-file-item__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.batch-file-item__remove {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  padding: var(--space-1);
+}
+
+.batch-file-item__remove:hover {
+  color: var(--color-error);
+  background: var(--color-error-alpha);
+}
+
+@media (max-width: 640px) {
+  .batch-uploader__dropzone {
+    min-height: 120px;
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .batch-uploader__files {
+    max-height: 200px;
+  }
+}
