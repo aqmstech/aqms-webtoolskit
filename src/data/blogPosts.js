@@ -145,5 +145,66 @@ export const BLOG_POSTS = [
       <p>If you can see a QR code in a picture, you should not need a second phone just to open it. A <a href="/scan-qr-code-from-image">QR Code Reader from Image</a> solves that problem in seconds by extracting the destination directly from the screenshot or saved image.</p>
       <p>Use it when the code is already on your device and you want the link immediately.</p>
     `
+  },
+  {
+    title: 'How to Scan QR Code on Your Own Screen on iPhone',
+    slug: 'scan-qr-code-on-own-screen-iphone',
+    metaTitle: 'How to Scan QR Code on Your Own Screen on iPhone',
+    metaDescription: 'Need to scan a QR code on your own iPhone screen? Learn the easiest way to open a QR code from a screenshot, saved image, or on-screen QR.',
+    excerpt: 'If a QR code is already on your iPhone screen, the easiest way to open it is to save the image or screenshot and use a QR code reader from image tool to extract the link.',
+    publishedDate: 'May 20, 2026',
+    isoDate: '2026-05-20',
+    author: 'AQMS Editorial Team',
+    readTime: '3 min read',
+    ctaType: 'qr-reader', // Custom CTA trigger
+    contentHtml: `
+      <p>This problem happens all the time. Someone sends a QR code on WhatsApp, email, Instagram, or a website. The code is visible on the same iPhone the person is using, so the usual camera method is not practical.</p>
+      
+      <p>Apple’s official instructions focus on scanning QR codes with the Camera app or Code Scanner when the code appears in the camera view, which works great for physical QR codes around you.</p>
+      
+      <p>But if the QR code is already on the screen, you need a different approach.</p>
+      
+      <h2>The easiest method</h2>
+      <p>If the QR code is on your own iPhone screen:</p>
+      <ol>
+        <li>Take a screenshot or save the image</li>
+        <li>Open a <a href="/scan-qr-code-from-image">QR Code Reader from Image</a> page</li>
+        <li>Upload the screenshot</li>
+        <li>Let the tool read the QR code</li>
+        <li>Tap the extracted link</li>
+      </ol>
+      <p>This is usually the simplest option because it does not require another device.</p>
+      
+      <h2>Common cases on iPhone</h2>
+      <p>People usually search for this when:</p>
+      <ul>
+        <li>a QR code is sent in iMessage or WhatsApp</li>
+        <li>the QR code is inside Safari or Chrome</li>
+        <li>the QR code appears on Instagram or Facebook</li>
+        <li>the QR code is on an event ticket image</li>
+        <li>a payment QR is shared as a screenshot</li>
+      </ul>
+      <p>In all of these cases, the main issue is the same: the QR code is already on the screen you are using.</p>
+      
+      <h2>Why the usual camera method does not fit this situation</h2>
+      <p>Apple’s Camera and Code Scanner are designed to detect QR codes shown to the camera. That works for posters, menus, packaging, and screens on another device.</p>
+      <p>When the code is on your own display, the camera cannot point at the same screen in a practical way. That is why an image-based QR reader is useful.</p>
+      
+      <h2>What if the QR code is inside a photo?</h2>
+      <p>If the QR code is already saved as a photo or screenshot, upload that image directly to the QR reader tool. The tool can decode the image and give you the result as a link, text, email, phone number, or another supported QR format.</p>
+      
+      <h2>Best results tips</h2>
+      <p>To improve success:</p>
+      <ul>
+        <li>make sure the screenshot is sharp</li>
+        <li>avoid cutting off the edges of the QR code</li>
+        <li>use the original image if possible</li>
+        <li>crop out unnecessary background around the code</li>
+      </ul>
+      
+      <h2>Final thoughts</h2>
+      <p>If you are trying to scan a QR code on your own iPhone screen, do not waste time looking for a second phone. The faster method is to use a <a href="/scan-qr-code-from-image">QR Code Reader from Image</a> and open the result directly.</p>
+      <p>That is exactly the kind of situation this tool is made for.</p>
+    `
   }
 ];
