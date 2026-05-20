@@ -388,5 +388,224 @@ export const BLOG_POSTS = [
       <h2>Final thoughts</h2>
       <p>When a QR code from a screenshot is not opening, the issue is usually not the idea of scanning from an image. It is the image quality, framing, or tool being used. In most cases, a clean upload to a <a href="/scan-qr-code-from-image">QR Code Reader from Image</a> tool solves the problem quickly.</p>
     `
+  },
+  {
+    title: 'How to Resize an Image for Social Media',
+    slug: 'how-to-resize-an-image-for-social-media',
+    metaTitle: 'How to Resize an Image for Social Media Online',
+    metaDescription: 'Learn how to resize an image for social media quickly and easily. Resize images for posts, banners, stories, profile pictures, and more without hassle.',
+    excerpt: 'To resize an image for social media, choose the correct format or platform size, upload your image to an image resizer, preview the result, and download the resized version.',
+    publishedDate: 'May 20, 2026',
+    isoDate: '2026-05-20',
+    author: 'AQMS Editorial Team',
+    readTime: '4 min read',
+    ctaType: 'resizer', // Custom CTA trigger
+    contentHtml: `
+      <p>Social media images need to fit specific layouts. A post image, story graphic, profile picture, banner, or cover image all use different shapes and dimensions. If the size is wrong, the image may look cropped, blurry, stretched, or misaligned.</p>
+      
+      <p>That is why using an image resizer is one of the easiest ways to prepare images before uploading them.</p>
+      
+      <h2>Why resizing matters for social media</h2>
+      <p>Social media platforms display images in different ways. A square post may look fine on one platform, but the same image may not work well as a banner or story. When an image is not sized properly, platforms often crop it automatically, which can cut off faces, text, logos, or important visual details.</p>
+      
+      <p>Resizing your image before uploading helps you keep control over how it appears.</p>
+      <p>It also helps with:</p>
+      <ul>
+        <li>cleaner presentation</li>
+        <li>better readability</li>
+        <li>more professional branding</li>
+        <li>fewer cropping surprises</li>
+        <li>faster content preparation</li>
+      </ul>
+      
+      <h2>Common social media image types</h2>
+      <p>People usually resize images for:</p>
+      <ul>
+        <li>social media posts</li>
+        <li>cover photos</li>
+        <li>story graphics</li>
+        <li>profile pictures</li>
+        <li>ad creatives</li>
+        <li>banners</li>
+        <li>thumbnails</li>
+      </ul>
+      <p>Instead of manually editing the image each time, an image resizer lets you choose the format you need and generate the output quickly.</p>
+      
+      <h2>How to resize an image for social media</h2>
+      <p>The basic process is simple:</p>
+      <ol>
+        <li><strong>Step 1: Choose the platform or format:</strong> Start by selecting the social media format you need, such as a square post, banner, story, or profile image.</li>
+        <li><strong>Step 2: Upload your image:</strong> Upload the original image you want to resize.</li>
+        <li><strong>Step 3: Select the resize mode:</strong> Choose whether you want the image to fit inside the frame, fill the frame, or stretch to the exact size.</li>
+        <li><strong>Step 4: Preview the result:</strong> Check how the resized image looks before downloading it.</li>
+        <li><strong>Step 5: Download the final version:</strong> Once the image looks right, download it and upload it to your platform.</li>
+      </ol>
+      
+      <h2>What resize mode should you use?</h2>
+      <p>Different resize modes work for different situations.</p>
+      <ul>
+        <li><strong>Fit</strong> is helpful when you want the full image to remain visible.</li>
+        <li><strong>Fill</strong> is useful when you want the frame fully covered, even if some cropping happens.</li>
+        <li><strong>Stretch</strong> is usually best avoided unless exact dimensions matter more than proportions.</li>
+      </ul>
+      <p>If your image includes faces, product shots, or text, previewing before download is especially important.</p>
+      
+      <h2>When an image gets cropped badly</h2>
+      <p>This happens a lot with banners and cover photos. A wide frame often cuts off the sides or top and bottom of the original image. If the tool supports crop repositioning or preview adjustment, use that option so the most important part of the image stays visible.</p>
+      <p>That is one of the biggest benefits of a good image resizer. It saves time and prevents awkward cropping.</p>
+      
+      <h2>Best practices before resizing</h2>
+      <p>For the best-looking results:</p>
+      <ul>
+        <li>start with a clear image</li>
+        <li>use a higher-resolution original when possible</li>
+        <li>avoid adding tiny text if the final image will be small</li>
+        <li>preview carefully before downloading</li>
+        <li>keep important content away from the edges</li>
+      </ul>
+      
+      <h2>Final thoughts</h2>
+      <p>If you post regularly on social media, resizing images properly is not optional. It helps your content look cleaner, more professional, and easier to view across platforms.</p>
+      <p>A good image resizer makes the process simple by letting you upload an image, choose the right format, preview it, and download the finished version in seconds.</p>
+    `
+  },
+  {
+    title: 'How to Resize an Image Without Losing Quality',
+    slug: 'how-to-resize-an-image-without-losing-quality',
+    metaTitle: 'How to Resize an Image Without Losing Quality',
+    metaDescription: 'Learn how to resize an image without losing quality. Discover the best way to resize images for web, social media, banners, and profile pictures while keeping them clear.',
+    excerpt: 'To resize an image without losing quality, start with a high-quality original image, use the correct resize settings, avoid unnecessary stretching, and export in a suitable format.',
+    publishedDate: 'May 20, 2026',
+    isoDate: '2026-05-20',
+    author: 'AQMS Editorial Team',
+    readTime: '4 min read',
+    ctaType: 'resizer', // Custom CTA trigger
+    contentHtml: `
+      <p>One of the biggest concerns people have when resizing images is quality loss. After resizing, the image may look blurry, soft, pixelated, or distorted. This usually happens because the original image was too small, the wrong resize method was used, or the output was compressed too aggressively.</p>
+      
+      <p>The good news is that resizing an image without losing visible quality is absolutely possible in many cases.</p>
+      
+      <h2>Why image quality drops after resizing</h2>
+      <p>Quality issues usually happen for one of these reasons:</p>
+      <ul>
+        <li><strong>The original image was too small:</strong> If a small image is enlarged too much, it can lose sharpness because there is not enough image data to support the larger output.</li>
+        <li><strong>The image was stretched:</strong> If the image is forced into dimensions that do not match its natural proportions, it can look warped or distorted.</li>
+        <li><strong>The file was compressed too much:</strong> Some export settings reduce file size aggressively, which can also reduce image clarity.</li>
+        <li><strong>The wrong format was used:</strong> Different image formats work better for different types of images. Some are better for photos, while others work better for graphics or text-heavy visuals.</li>
+      </ul>
+      
+      <h2>The best way to resize without losing quality</h2>
+      <p>The safest approach is:</p>
+      <ol>
+        <li>Start with the best original image you have</li>
+        <li>Resize it to the exact dimensions you need</li>
+        <li>Keep the aspect ratio consistent when possible</li>
+        <li>Use preview before downloading</li>
+        <li>Export in a suitable format and quality level</li>
+      </ol>
+      <p>This helps preserve clarity and reduce unwanted distortion.</p>
+      
+      <h2>Should you enlarge or reduce an image?</h2>
+      <p>Reducing an image is usually safer than enlarging it. When you make an image smaller, it often stays sharp if the original is strong. Enlarging is harder because the software has to generate extra visual detail that was not there before.</p>
+      <p>That is why using a high-resolution source image gives much better results.</p>
+      
+      <h2>Fit vs Fill vs Stretch</h2>
+      <p>The resize method matters a lot.</p>
+      <ul>
+        <li><strong>Fit</strong> keeps the entire image visible inside the chosen frame. This is often the safest option if you want to preserve the full image.</li>
+        <li><strong>Fill</strong> covers the entire frame and may crop part of the image, but it usually looks more polished for banners and social layouts.</li>
+        <li><strong>Stretch</strong> forces the image into exact dimensions and can reduce quality visually if the proportions do not match.</li>
+      </ul>
+      <p>If your image contains people, products, or text, always preview before final export.</p>
+      
+      <h2>How to keep images sharp for web and social use</h2>
+      <p>If your goal is web or social media use, try these habits:</p>
+      <ul>
+        <li>upload a large, clear original image</li>
+        <li>do not enlarge small screenshots too much</li>
+        <li>avoid repeated editing and re-saving</li>
+        <li>use a proper output format</li>
+        <li>keep text areas readable after resizing</li>
+      </ul>
+      <p>Small quality problems become more obvious when the image contains logos, text, or faces.</p>
+      
+      <h2>Final thoughts</h2>
+      <p>If you want to resize an image without losing quality, the most important thing is to start with a strong original file and choose the right resize settings. A good image resizer helps by giving you clean resizing options, a preview, and a simple export process.</p>
+      <p>The goal is not just to change dimensions. The goal is to keep the image looking sharp, balanced, and ready to use.</p>
+    `
+  },
+  {
+    title: 'How to Resize an Image for a Profile Picture',
+    slug: 'how-to-resize-an-image-for-a-profile-picture',
+    metaTitle: 'How to Resize an Image for a Profile Picture',
+    metaDescription: 'Learn how to resize an image for a profile picture on social media, websites, and messaging apps. Make sure your photo fits properly and looks clear.',
+    excerpt: 'To resize an image for a profile picture, choose a square or profile-picture format, upload your image, adjust the crop if needed, preview the result, and download the resized version.',
+    publishedDate: 'May 20, 2026',
+    isoDate: '2026-05-20',
+    author: 'AQMS Editorial Team',
+    readTime: '3 min read',
+    ctaType: 'resizer', // Custom CTA trigger
+    contentHtml: `
+      <p>Profile pictures appear everywhere — on social media, messaging apps, websites, business directories, and online accounts. Even though they seem simple, a badly resized profile image can look awkward, blurry, zoomed in too far, or poorly cropped.</p>
+      
+      <p>That is why it is worth resizing your image properly before uploading it.</p>
+      
+      <h2>Why profile picture resizing matters</h2>
+      <p>A profile image is often one of the first things people see. If it is cut off badly or looks low quality, it affects the overall impression immediately.</p>
+      <p>Resizing your image first helps make sure:</p>
+      <ul>
+        <li>your face or subject stays centered</li>
+        <li>the image fits the display area properly</li>
+        <li>the picture looks clean on mobile and desktop</li>
+        <li>important parts are not cropped out</li>
+      </ul>
+      <p>This is especially important for business profiles, team photos, brand pages, and personal profiles used professionally.</p>
+      
+      <h2>What kind of image works best for a profile picture?</h2>
+      <p>A good profile image usually has:</p>
+      <ul>
+        <li>a clear subject</li>
+        <li>enough empty space around the face or focal point</li>
+        <li>good lighting</li>
+        <li>a higher-quality original file</li>
+        <li>minimal clutter near the edges</li>
+      </ul>
+      <p>If the original image is too tight, resizing it into a square or circular area may crop important parts.</p>
+      
+      <h2>How to resize an image for a profile picture</h2>
+      <p>The easiest method is:</p>
+      <ol>
+        <li><strong>Step 1: Choose a profile picture or square preset:</strong> Most profile images work best in a square format first, even if the platform later displays them in a circle.</li>
+        <li><strong>Step 2: Upload your image:</strong> Use the original version of the image whenever possible.</li>
+        <li><strong>Step 3: Adjust the framing:</strong> If your image is being cropped, reposition it so the most important part stays centered.</li>
+        <li><strong>Step 4: Preview the final result:</strong> Make sure the face, product, logo, or subject appears clearly inside the visible area.</li>
+        <li><strong>Step 5: Download and upload:</strong> Once the preview looks good, download it and use it as your new profile photo.</li>
+      </ol>
+      
+      <h2>Square vs circle profile images</h2>
+      <p>Many platforms upload profile pictures as squares but display them as circles. That means the corners may disappear in the final version. To avoid problems, keep important content away from the outer corners of the image.</p>
+      <p>This is especially important for:</p>
+      <ul>
+        <li>logos</li>
+        <li>headshots</li>
+        <li>brand marks</li>
+        <li>product profile images</li>
+      </ul>
+      
+      <h2>Common profile picture mistakes</h2>
+      <p>A profile photo usually looks bad when:</p>
+      <ul>
+        <li>the face is too close to the edge</li>
+        <li>the image is low quality</li>
+        <li>the subject is off-center</li>
+        <li>the crop cuts off part of the head or logo</li>
+        <li>the final size is too small or too stretched</li>
+      </ul>
+      <p>Using preview before download helps catch these issues early.</p>
+      
+      <h2>Final thoughts</h2>
+      <p>A profile picture may be small, but it has a big impact. Resizing it properly helps it look clean, balanced, and professional across platforms.</p>
+      <p>Whether it is for a personal account, a business page, or a brand profile, a simple image resizer makes the process much faster and more accurate.</p>
+    `
   }
 ];
