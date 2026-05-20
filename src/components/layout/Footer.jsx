@@ -5,6 +5,7 @@ import './Footer.css';
 const TOOL_LINKS = [
   { to: '/image-resizer', label: 'Image Resizer' },
   { to: '/qr-code-generator', label: 'QR Code Generator' },
+  { to: '/scan-qr-code-from-image', label: 'QR Code Reader' },
   // { to: '/image-compressor', label: 'Image Compressor' },
   // { to: '/format-converter', label: 'Format Converter' },
 ];

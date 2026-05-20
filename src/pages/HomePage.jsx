@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Image, QrCode, Zap, Smartphone, DollarSign } from 'lucide-react';
+import { Image, QrCode, Zap, Smartphone, DollarSign, Scan } from 'lucide-react';
 
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -106,6 +106,20 @@ export default function HomePage() {
                     Use Tool
                   </Link>
                 </div>
+
+                {/* QR Code Reader */}
+                <div className="home-tool-card" id="tool-card-qr-reader">
+                  <div className="home-tool-card__icon home-tool-card__icon--primary" aria-hidden="true">
+                    <Scan size={28} />
+                  </div>
+                  <h3 className="home-tool-card__name">QR Code Reader</h3>
+                  <p className="home-tool-card__desc">
+                    Upload an image or screenshot to scan QR codes instantly and extract links, text, and info.
+                  </p>
+                  <Link to="/scan-qr-code-from-image" className="btn btn--primary">
+                    Use Tool
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
@@ -148,11 +162,11 @@ export default function HomePage() {
                   so your files stay private and nothing is uploaded to a server.
                 </p>
                 <p className="home-seo__text">
-                  The platform currently offers two tools: an <strong>Image Resizer</strong>{' '}
+                  The platform offers several free tools: an <strong>Image Resizer</strong>{' '}
                   that lets you resize images for social media platforms, banners, profile
-                  pictures, and custom dimensions, and a <strong>QR Code Generator</strong>{' '}
-                  that creates QR codes for URLs, plain text, email addresses, phone numbers,
-                  WiFi credentials, and more.
+                  pictures, and custom dimensions; a <strong>QR Code Generator</strong>{' '}
+                  that creates QR codes for URLs, plain text, email, phone numbers, WiFi, and contacts; and a <strong>QR Code Reader</strong>{' '}
+                  that scans images and screenshots to instantly extract links, text, and other QR payloads.
                 </p>
                 <p className="home-seo__text">
                   Whether you need to quickly prepare a Facebook cover photo, create a QR

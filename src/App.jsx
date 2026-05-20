@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import HomePage from './pages/HomePage';
 import ImageResizerPage from './pages/ImageResizerPage';
 import QrCodeGeneratorPage from './pages/QrCodeGeneratorPage';
+import ScanQrCodePage from './pages/ScanQrCodePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
 import ContactPage from './pages/ContactPage';
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/image-resizer" element={<ImageResizerPage />} />
           <Route path="/qr-code-generator" element={<QrCodeGeneratorPage />} />
+          <Route path="/scan-qr-code-from-image" element={<ScanQrCodePage />} />
 
           {/* Static pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

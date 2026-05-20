@@ -81,3 +81,28 @@ export function getBreadcrumbSchema(items) {
     })),
   };
 }
+
+/* ── WebApplication Schema (QR Code Reader) ── */
+export function getQrCodeReaderSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'QR Code Reader from Image Online',
+    url: `${SITE_URL}/scan-qr-code-from-image`,
+    description:
+      'Upload an image or screenshot to scan QR codes instantly. Extract clickable links, text, email, phone numbers, and more from one or multiple QR codes online.',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    browserRequirements: 'Requires a modern browser with JavaScript enabled',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: [
+      'Scan QR codes from screenshots and images',
+      'Detect multiple QR codes in a single image',
+      'Extract links, text, emails, phone numbers, and WiFi configurations',
+      'One-click action buttons: Copy, Open Link, Call, Email',
+      'Highlight detected QR codes on image preview',
+      'Client-side processing — 100% private and secure',
+    ],
+  };
+}
+
