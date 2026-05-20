@@ -16,6 +16,10 @@ const LEGAL_LINKS = [
   { to: '/contact', label: 'Contact' },
 ];
 
+const RESOURCE_LINKS = [
+  { to: '/blog', label: 'Blog' },
+];
+
 export default function Footer() {
   return (
     <footer className="site-footer" role="contentinfo">
@@ -37,6 +41,15 @@ export default function Footer() {
           <h3 className="footer-nav__heading">Tools</h3>
           <ul role="list">
             {TOOL_LINKS.map(({ to, label }) => (
+              <li key={to}><Link to={to}>{label}</Link></li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav className="footer-nav" aria-label="Resources links">
+          <h3 className="footer-nav__heading">Resources</h3>
+          <ul role="list">
+            {RESOURCE_LINKS.map(({ to, label }) => (
               <li key={to}><Link to={to}>{label}</Link></li>
             ))}
           </ul>

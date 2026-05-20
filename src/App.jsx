@@ -7,6 +7,8 @@ import ScanQrCodePage from './pages/ScanQrCodePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
 import ContactPage from './pages/ContactPage';
+import BlogListPage from './pages/BlogListPage';
+import BlogPostPage from './pages/BlogPostPage';
 
 /**
  * App — Root component.
@@ -27,6 +29,10 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-use" element={<TermsOfUsePage />} />
           <Route path="/contact" element={<ContactPage />} />
+
+          {/* Blog pages */}
+          <Route path="/blog" element={<BlogListPage />} />
+          <Route path="/blog/:postSlug" element={<BlogPostPage />} />
 
           {/* Future tool routes:
           <Route path="/image-compressor" element={<ImageCompressorPage />} />
